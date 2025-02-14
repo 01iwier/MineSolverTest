@@ -14,26 +14,21 @@ public class BaseTest {
     protected WebDriver driver;
     protected BasePage basePage;
     private String url = "https://minesweeperonline.com/#expert-200-night";
-    //https://minesweeperonline.com/#beginner-200-night
-    //https://minesweeperonline.com/#intermediate-200-night
-    //https://minesweeperonline.com/#expert-200-night
-    
-    //https://globbertrot.github.io/alertpage/
 
     @BeforeClass
     public void setUp() {
-        // Set the path to your .crx extension file
-        String extensionPath = "E:\\Projects\\JavaScript\\MineSolverTest\\selenium_tests\\extensions\\iobegaggjcgmiggimmgocbbenihefagl.crx";
+        // Set the path to .crx extension
+        File temp = new File("extensions\\iobegaggjcgmiggimmgocbbenihefagl.crx");
+        String extensionPath = temp.getPath();
 
         // Configure ChromeOptions to add the extension
         ChromeOptions options = new ChromeOptions();
         options.addExtensions(new File(extensionPath));
 
-        // Initialize ChromeDriver with options
+        // Initialize ChromeDriver with custom options
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1500, 950));
         driver.manage().window().setPosition(new Point(700, 150));
-        //driver.manage().window().maximize();
         driver.get(url);
 
         basePage = new BasePage();
